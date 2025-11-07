@@ -125,8 +125,10 @@
             <div class="video-feed" id="videoFeed">
                 <!-- Video Card 1 -->
                 <div class="video-card active" data-video-id="1">
-                    <video class="video-player" loop muted playsinline poster="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400&h=600&fit=crop">
-                        <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+                    <video class="video-player" loop muted playsinline autoplay poster="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400&h=600&fit=crop">
+                        <source src="https://assets.mixkit.co/videos/preview/mixkit-cooking-eggs-in-a-pan-close-up-video-42309-large.mp4" type="video/mp4">
+                        <source src="https://videos.pexels.com/video-files/3297379/3297379-sd_640_360_30fps.mp4" type="video/mp4">
+                        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
                     </video>
                     
                     <div class="video-overlay">
@@ -146,7 +148,7 @@
                                 <svg class="btn-icon" viewBox="0 0 24 24" fill="none">
                                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2"/>
                                 </svg>
-                                <span class="btn-count">234</span>
+                                <!-- <span class="btn-count">234</span> -->
                             </button>
                             <button class="action-btn bookmark-btn" data-action="bookmark">
                                 <svg class="btn-icon" viewBox="0 0 24 24" fill="none">
@@ -168,7 +170,9 @@
                 <!-- Video Card 2 -->
                 <div class="video-card" data-video-id="2">
                     <video class="video-player" loop muted playsinline poster="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=400&h=600&fit=crop">
-                        <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_2mb.mp4" type="video/mp4">
+                        <source src="https://assets.mixkit.co/videos/preview/mixkit-indian-food-on-a-table-42645-large.mp4" type="video/mp4">
+                        <source src="https://videos.pexels.com/video-files/3298642/3298642-sd_640_360_30fps.mp4" type="video/mp4">
+                        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" type="video/mp4">
                     </video>
                     
                     <div class="video-overlay">
@@ -210,7 +214,9 @@
                 <!-- Video Card 3 -->
                 <div class="video-card" data-video-id="3">
                     <video class="video-player" loop muted playsinline poster="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400&h=600&fit=crop">
-                        <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_5mb.mp4" type="video/mp4">
+                        <source src="https://assets.mixkit.co/videos/preview/mixkit-street-food-vendor-cooking-42408-large.mp4" type="video/mp4">
+                        <source src="https://videos.pexels.com/video-files/4253302/4253302-sd_640_360_30fps.mp4" type="video/mp4">
+                        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
                     </video>
                     
                     <div class="video-overlay">
@@ -252,7 +258,9 @@
                 <!-- Video Card 4 -->
                 <div class="video-card" data-video-id="4">
                     <video class="video-player" loop muted playsinline poster="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=600&fit=crop">
-                        <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+                        <source src="https://assets.mixkit.co/videos/preview/mixkit-sizzling-food-on-a-pan-42657-large.mp4" type="video/mp4">
+                        <source src="https://videos.pexels.com/video-files/4252846/4252846-sd_640_360_30fps.mp4" type="video/mp4">
+                        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" type="video/mp4">
                     </video>
                     
                     <div class="video-overlay">
@@ -294,7 +302,8 @@
                 <!-- Video Card 5 -->
                 <div class="video-card" data-video-id="5">
                     <video class="video-player" loop muted playsinline poster="https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&h=600&fit=crop">
-                        <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_2mb.mp4" type="video/mp4">
+                        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" type="video/mp4">
+                        <source src="https://file-examples.com/storage/fe0c2883a781b95da93c0b4/2017/10/file_example_MP4_1280_10MG.mp4" type="video/mp4">
                     </video>
                     
                     <div class="video-overlay">
@@ -1366,10 +1375,58 @@
 
         function playCurrentVideo() {
             const currentVideo = videoCards[currentVideoIndex].querySelector('.video-player');
-            currentVideo.play().catch(e => {
-                console.log('Auto-play prevented:', e);
-                // Show play button overlay if autoplay fails
-            });
+            
+            // Ensure video is loaded
+            currentVideo.load();
+            
+            // Add autoplay attribute
+            currentVideo.setAttribute('autoplay', '');
+            
+            // Try to play
+            const playPromise = currentVideo.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    console.log('Video is playing successfully');
+                }).catch(e => {
+                    console.log('Auto-play prevented:', e);
+                    // Show play button overlay if autoplay fails
+                    showPlayButton(currentVideo);
+                });
+            }
+        }
+        
+        function showPlayButton(video) {
+            const videoCard = video.closest('.video-card');
+            let playOverlay = videoCard.querySelector('.play-overlay');
+            
+            if (!playOverlay) {
+                playOverlay = document.createElement('div');
+                playOverlay.className = 'play-overlay';
+                playOverlay.innerHTML = `
+                    <button class="play-button">
+                        <svg viewBox="0 0 24 24" fill="white" width="60" height="60">
+                            <polygon points="5,3 19,12 5,21" />
+                        </svg>
+                    </button>
+                `;
+                playOverlay.style.cssText = `
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    z-index: 100;
+                `;
+                
+                playOverlay.addEventListener('click', () => {
+                    video.play();
+                    playOverlay.style.display = 'none';
+                });
+                
+                videoCard.appendChild(playOverlay);
+            }
+            
+            playOverlay.style.display = 'flex';
         }
 
         function pauseCurrentVideo() {
