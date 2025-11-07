@@ -1,0 +1,2103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bengaluru Swaada - Authentic Flavors of Bangalore</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Logo Screen -->
+        <div class="logo-section" id="logoScreen">
+            <div class="food-icon">
+                🍛
+            </div>
+            <h1 class="brand-name">Bengaluru Swada</h1>
+        </div>
+
+        <!-- Mobile Number Screen -->
+        <div class="mobile-input-section" id="mobileScreen" style="display: none;">
+            <div class="mobile-form">
+                <h2 class="welcome-text">Welcome to Bengaluru Swada!</h2>
+                <p class="subtitle">Enter your mobile number to discover amazing street food near you</p>
+                
+                <div class="input-container">
+                    <div class="country-code">
+                        <span class="flag">🇮🇳</span>
+                        <span class="code">+91</span>
+                    </div>
+                    <input 
+                        type="tel" 
+                        id="mobileNumber" 
+                        placeholder="Enter your mobile number"
+                        maxlength="10"
+                        pattern="[0-9]{10}"
+                    >
+                </div>
+                
+                <button class="continue-btn" id="continueBtn" disabled>Continue</button>
+                
+                <p class="privacy-text">
+                    We'll send you an OTP to verify your number. Your privacy is important to us.
+                </p>
+            </div>
+        </div>
+
+        <!-- OTP Verification Screen -->
+        <div class="otp-section" id="otpScreen" style="display: none;">
+            <div class="otp-form">
+                <h2 class="otp-title">Verify Your Number</h2>
+                <p class="otp-subtitle">We've sent a 4-digit OTP to <span id="displayNumber"></span></p>
+                
+                <div class="otp-container">
+                    <input type="text" class="otp-input" maxlength="1" id="otp1">
+                    <input type="text" class="otp-input" maxlength="1" id="otp2">
+                    <input type="text" class="otp-input" maxlength="1" id="otp3">
+                    <input type="text" class="otp-input" maxlength="1" id="otp4">
+                </div>
+                
+                <button class="verify-btn" id="verifyBtn" disabled>Verify OTP</button>
+                
+                <div class="resend-container">
+                    <p class="resend-text">Didn't receive OTP? <span class="resend-link" id="resendOtp">Resend</span></p>
+                    <p class="timer" id="timer">Resend in <span id="countdown">30</span>s</p>
+                </div>
+                
+                <button class="back-btn" id="backBtn">← Change Number</button>
+            </div>
+        </div>
+
+        <!-- Location Permission Screen -->
+        <div class="location-section" id="locationScreen" style="display: none;">
+            <div class="location-form">
+                <div class="location-icon">📍</div>
+                <h2 class="location-title">Find Street Food Near You</h2>
+                <p class="location-subtitle">We need your location to show you the best street food options around you</p>
+                
+                <div class="location-benefits">
+                    <div class="benefit-item">
+                        <span class="benefit-icon">🎯</span>
+                        <span class="benefit-text">Discover food stalls nearby</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">💰</span>
+                        <span class="benefit-text">See accurate prices & distance</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">⚡</span>
+                        <span class="benefit-text">Quick delivery estimates</span>
+                    </div>
+                </div>
+                
+                <button class="allow-location-btn" id="allowLocationBtn">
+                    <span class="btn-icon">📱</span>
+                    Allow Location Access
+                </button>
+                
+                <button class="manual-location-btn" id="manualLocationBtn">
+                    Enter Location Manually
+                </button>
+                
+                <p class="location-privacy">
+                    Your location data is secure and only used to show nearby food options. 
+                    You can change this anytime in settings.
+                </p>
+            </div>
+        </div>
+
+        <!-- Main App Container -->
+        <div class="main-app" id="mainApp" style="display: none;">
+            <!-- Top Navigation Bar -->
+            <div class="top-nav">
+                <div class="nav-left">
+                    <div class="location-badge" id="currentLocation">
+                        <span class="location-pin">📍</span>
+                        <span class="location-text">Koramangala, Bangalore</span>
+                    </div>
+                </div>
+                <div class="nav-right">
+                </div>
+            </div>
+
+            <!-- Video Feed Container -->
+            <div class="video-feed" id="videoFeed">
+                <!-- Video Card 1 -->
+                <div class="video-card active" data-video-id="1">
+                    <video class="video-player" loop muted playsinline poster="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400&h=600&fit=crop">
+                        <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+                    </video>
+                    
+                    <div class="video-overlay">
+                        <div class="video-info">
+                            <div class="food-details">
+                                <h3 class="dish-name">Masala Dosa</h3>
+                                <p class="vendor-name">Ramesh Uncle's Stall</p>
+                                <div class="price-distance">
+                                    <span class="price">₹45</span>
+                                    <span class="distance">0.8 km away</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="action-buttons">
+                            <button class="action-btn like-btn" data-action="like">
+                                <svg class="btn-icon" viewBox="0 0 24 24" fill="none">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                <span class="btn-count">234</span>
+                            </button>
+                            <button class="action-btn bookmark-btn" data-action="bookmark">
+                                <svg class="btn-icon" viewBox="0 0 24 24" fill="none">
+                                    <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </button>
+                            <button class="action-btn share-btn" data-action="share">
+                                <svg class="btn-icon" viewBox="0 0 24 24" fill="none">
+                                    <circle cx="18" cy="5" r="3" stroke="currentColor" stroke-width="2"/>
+                                    <circle cx="6" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                                    <circle cx="18" cy="19" r="3" stroke="currentColor" stroke-width="2"/>
+                                    <path d="m8.59 13.51 6.83 3.98M15.41 6.51l-6.82 3.98" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Card 2 -->
+                <div class="video-card" data-video-id="2">
+                    <video class="video-player" loop muted playsinline poster="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=400&h=600&fit=crop">
+                        <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_2mb.mp4" type="video/mp4">
+                    </video>
+                    
+                    <div class="video-overlay">
+                        <div class="video-info">
+                            <div class="food-details">
+                                <h3 class="dish-name">Vada Pav</h3>
+                                <p class="vendor-name">Mumbai Street Corner</p>
+                                <div class="price-distance">
+                                    <span class="price">₹25</span>
+                                    <span class="distance">1.2 km away</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="action-buttons">
+                            <button class="action-btn like-btn" data-action="like">
+                                <svg class="btn-icon" viewBox="0 0 24 24" fill="none">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                <span class="btn-count">156</span>
+                            </button>
+                            <button class="action-btn bookmark-btn" data-action="bookmark">
+                                <svg class="btn-icon" viewBox="0 0 24 24" fill="none">
+                                    <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </button>
+                            <button class="action-btn share-btn" data-action="share">
+                                <svg class="btn-icon" viewBox="0 0 24 24" fill="none">
+                                    <circle cx="18" cy="5" r="3" stroke="currentColor" stroke-width="2"/>
+                                    <circle cx="6" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                                    <circle cx="18" cy="19" r="3" stroke="currentColor" stroke-width="2"/>
+                                    <path d="m8.59 13.51 6.83 3.98M15.41 6.51l-6.82 3.98" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Card 3 -->
+                <div class="video-card" data-video-id="3">
+                    <video class="video-player" loop muted playsinline poster="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400&h=600&fit=crop">
+                        <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_5mb.mp4" type="video/mp4">
+                    </video>
+                    
+                    <div class="video-overlay">
+                        <div class="video-info">
+                            <div class="food-details">
+                                <h3 class="dish-name">Pani Puri</h3>
+                                <p class="vendor-name">Chaat King</p>
+                                <div class="price-distance">
+                                    <span class="price">₹30</span>
+                                    <span class="distance">0.5 km away</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="action-buttons">
+                            <button class="action-btn like-btn" data-action="like">
+                                <svg class="btn-icon" viewBox="0 0 24 24" fill="none">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                <span class="btn-count">389</span>
+                            </button>
+                            <button class="action-btn bookmark-btn" data-action="bookmark">
+                                <svg class="btn-icon" viewBox="0 0 24 24" fill="none">
+                                    <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </button>
+                            <button class="action-btn share-btn" data-action="share">
+                                <svg class="btn-icon" viewBox="0 0 24 24" fill="none">
+                                    <circle cx="18" cy="5" r="3" stroke="currentColor" stroke-width="2"/>
+                                    <circle cx="6" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                                    <circle cx="18" cy="19" r="3" stroke="currentColor" stroke-width="2"/>
+                                    <path d="m8.59 13.51 6.83 3.98M15.41 6.51l-6.82 3.98" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Card 4 -->
+                <div class="video-card" data-video-id="4">
+                    <video class="video-player" loop muted playsinline poster="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=600&fit=crop">
+                        <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+                    </video>
+                    
+                    <div class="video-overlay">
+                        <div class="video-info">
+                            <div class="food-details">
+                                <h3 class="dish-name">Chole Bhature</h3>
+                                <p class="vendor-name">Punjabi Dhaba</p>
+                                <div class="price-distance">
+                                    <span class="price">₹65</span>
+                                    <span class="distance">2.1 km away</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="action-buttons">
+                            <button class="action-btn like-btn" data-action="like">
+                                <svg class="btn-icon" viewBox="0 0 24 24" fill="none">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                <span class="btn-count">445</span>
+                            </button>
+                            <button class="action-btn bookmark-btn" data-action="bookmark">
+                                <svg class="btn-icon" viewBox="0 0 24 24" fill="none">
+                                    <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </button>
+                            <button class="action-btn share-btn" data-action="share">
+                                <svg class="btn-icon" viewBox="0 0 24 24" fill="none">
+                                    <circle cx="18" cy="5" r="3" stroke="currentColor" stroke-width="2"/>
+                                    <circle cx="6" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                                    <circle cx="18" cy="19" r="3" stroke="currentColor" stroke-width="2"/>
+                                    <path d="m8.59 13.51 6.83 3.98M15.41 6.51l-6.82 3.98" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Card 5 -->
+                <div class="video-card" data-video-id="5">
+                    <video class="video-player" loop muted playsinline poster="https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&h=600&fit=crop">
+                        <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_2mb.mp4" type="video/mp4">
+                    </video>
+                    
+                    <div class="video-overlay">
+                        <div class="video-info">
+                            <div class="food-details">
+                                <h3 class="dish-name">Biryani Bowl</h3>
+                                <p class="vendor-name">Hyderabadi Corner</p>
+                                <div class="price-distance">
+                                    <span class="price">₹85</span>
+                                    <span class="distance">1.5 km away</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="action-buttons">
+                            <button class="action-btn like-btn" data-action="like">
+                                <svg class="btn-icon" viewBox="0 0 24 24" fill="none">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                <span class="btn-count">672</span>
+                            </button>
+                            <button class="action-btn bookmark-btn" data-action="bookmark">
+                                <svg class="btn-icon" viewBox="0 0 24 24" fill="none">
+                                    <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </button>
+                            <button class="action-btn share-btn" data-action="share">
+                                <svg class="btn-icon" viewBox="0 0 24 24" fill="none">
+                                    <circle cx="18" cy="5" r="3" stroke="currentColor" stroke-width="2"/>
+                                    <circle cx="6" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                                    <circle cx="18" cy="19" r="3" stroke="currentColor" stroke-width="2"/>
+                                    <path d="m8.59 13.51 6.83 3.98M15.41 6.51l-6.82 3.98" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Navigation -->
+            <div class="bottom-nav">
+                <button class="bottom-nav-btn active" data-tab="feed">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="currentColor" stroke-width="2"/>
+                        <polyline points="9,22 9,12 15,12 15,22" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <span class="nav-label">Feed</span>
+                </button>
+                <button class="bottom-nav-btn" data-tab="search">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none">
+                        <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+                        <path d="m21 21-4.35-4.35" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <span class="nav-label">Search</span>
+                </button>
+                <button class="bottom-nav-btn" data-tab="map">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none">
+                        <polygon points="3 6 9 1 15 6 21 1 21 18 15 23 9 18 3 23" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <line x1="9" y1="1" x2="9" y2="18" stroke="currentColor" stroke-width="2"/>
+                        <line x1="15" y1="6" x2="15" y2="23" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <span class="nav-label">Map</span>
+                </button>
+                <button class="bottom-nav-btn" data-tab="favorites">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <span class="nav-label">Favorites</span>
+                </button>
+                <button class="bottom-nav-btn" data-tab="profile">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <span class="nav-label">Profile</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Search & Filter Screen -->
+        <div class="search-screen" id="searchScreen" style="display: none;">
+            <!-- Search Header -->
+            <div class="search-header">
+                <button class="back-btn" id="searchBackBtn">
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M19 12H5M12 5l-7 7 7 7" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </button>
+                <div class="search-input-container">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none">
+                        <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+                        <path d="m21 21-4.35-4.35" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <input type="text" class="search-input" placeholder="Search dosa, vada pav, biryani..." id="searchInput">
+                    <button class="clear-search" id="clearSearch" style="display: none;">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2"/>
+                            <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quick Filters -->
+            <div class="quick-filters">
+                <div class="filter-chips">
+                    <button class="filter-chip active" data-filter="all">All</button>
+                    <button class="filter-chip" data-filter="south-indian">South Indian</button>
+                    <button class="filter-chip" data-filter="north-indian">North Indian</button>
+                    <button class="filter-chip" data-filter="street-snacks">Street Snacks</button>
+                    <button class="filter-chip" data-filter="sweets">Sweets</button>
+                </div>
+            </div>
+
+            <!-- Advanced Filters -->
+            <div class="advanced-filters">
+                <div class="filter-section">
+                    <h3 class="filter-title">Price Range</h3>
+                    <div class="price-range">
+                        <button class="price-btn active" data-price="all">All</button>
+                        <button class="price-btn" data-price="0-30">₹0-30</button>
+                        <button class="price-btn" data-price="31-60">₹31-60</button>
+                        <button class="price-btn" data-price="61-100">₹61-100</button>
+                        <button class="price-btn" data-price="100+">₹100+</button>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <h3 class="filter-title">Distance</h3>
+                    <div class="distance-range">
+                        <button class="distance-btn active" data-distance="all">All</button>
+                        <button class="distance-btn" data-distance="0-1">< 1 km</button>
+                        <button class="distance-btn" data-distance="1-3">1-3 km</button>
+                        <button class="distance-btn" data-distance="3-5">3-5 km</button>
+                        <button class="distance-btn" data-distance="5+">5+ km</button>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <h3 class="filter-title">Sort By</h3>
+                    <div class="sort-options">
+                        <button class="sort-btn active" data-sort="distance">Nearest First</button>
+                        <button class="sort-btn" data-sort="price-low">Price: Low to High</button>
+                        <button class="sort-btn" data-sort="price-high">Price: High to Low</button>
+                        <button class="sort-btn" data-sort="popular">Most Popular</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search Results -->
+            <div class="search-results" id="searchResults">
+                <div class="results-header">
+                    <h3 class="results-count">12 food stalls found</h3>
+                    <button class="view-toggle" id="viewToggle" data-view="grid">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <rect x="3" y="3" width="7" height="7" stroke="currentColor" stroke-width="2"/>
+                            <rect x="14" y="3" width="7" height="7" stroke="currentColor" stroke-width="2"/>
+                            <rect x="14" y="14" width="7" height="7" stroke="currentColor" stroke-width="2"/>
+                            <rect x="3" y="14" width="7" height="7" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="results-grid" id="resultsGrid">
+                    <!-- Search Result Card 1 -->
+                    <div class="result-card" data-dish="masala-dosa" data-price="45" data-distance="0.8">
+                        <div class="result-image">
+                            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=300&h=200&fit=crop" alt="Masala Dosa">
+                            <div class="play-overlay">
+                                <svg viewBox="0 0 24 24" fill="white">
+                                    <polygon points="5,3 19,12 5,21" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="result-info">
+                            <h4 class="dish-name">Masala Dosa</h4>
+                            <p class="vendor-name">Ramesh Uncle's Stall</p>
+                            <div class="result-meta">
+                                <span class="price">₹45</span>
+                                <span class="distance">0.8 km</span>
+                                <span class="rating">⭐ 4.5</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Search Result Card 2 -->
+                    <div class="result-card" data-dish="vada-pav" data-price="25" data-distance="1.2">
+                        <div class="result-image">
+                            <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=300&h=200&fit=crop" alt="Vada Pav">
+                            <div class="play-overlay">
+                                <svg viewBox="0 0 24 24" fill="white">
+                                    <polygon points="5,3 19,12 5,21" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="result-info">
+                            <h4 class="dish-name">Vada Pav</h4>
+                            <p class="vendor-name">Mumbai Street Corner</p>
+                            <div class="result-meta">
+                                <span class="price">₹25</span>
+                                <span class="distance">1.2 km</span>
+                                <span class="rating">⭐ 4.2</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Search Result Card 3 -->
+                    <div class="result-card" data-dish="pani-puri" data-price="30" data-distance="0.5">
+                        <div class="result-image">
+                            <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=300&h=200&fit=crop" alt="Pani Puri">
+                            <div class="play-overlay">
+                                <svg viewBox="0 0 24 24" fill="white">
+                                    <polygon points="5,3 19,12 5,21" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="result-info">
+                            <h4 class="dish-name">Pani Puri</h4>
+                            <p class="vendor-name">Chaat King</p>
+                            <div class="result-meta">
+                                <span class="price">₹30</span>
+                                <span class="distance">0.5 km</span>
+                                <span class="rating">⭐ 4.7</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Search Result Card 4 -->
+                    <div class="result-card" data-dish="chole-bhature" data-price="65" data-distance="2.1">
+                        <div class="result-image">
+                            <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=300&h=200&fit=crop" alt="Chole Bhature">
+                            <div class="play-overlay">
+                                <svg viewBox="0 0 24 24" fill="white">
+                                    <polygon points="5,3 19,12 5,21" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="result-info">
+                            <h4 class="dish-name">Chole Bhature</h4>
+                            <p class="vendor-name">Punjabi Dhaba</p>
+                            <div class="result-meta">
+                                <span class="price">₹65</span>
+                                <span class="distance">2.1 km</span>
+                                <span class="rating">⭐ 4.3</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Search Result Card 5 -->
+                    <div class="result-card" data-dish="biryani" data-price="85" data-distance="1.5">
+                        <div class="result-image">
+                            <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=300&h=200&fit=crop" alt="Biryani">
+                            <div class="play-overlay">
+                                <svg viewBox="0 0 24 24" fill="white">
+                                    <polygon points="5,3 19,12 5,21" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="result-info">
+                            <h4 class="dish-name">Biryani Bowl</h4>
+                            <p class="vendor-name">Hyderabadi Corner</p>
+                            <div class="result-meta">
+                                <span class="price">₹85</span>
+                                <span class="distance">1.5 km</span>
+                                <span class="rating">⭐ 4.6</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Search Result Card 6 -->
+                    <div class="result-card" data-dish="idli-sambar" data-price="35" data-distance="1.0">
+                        <div class="result-image">
+                            <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=300&h=200&fit=crop" alt="Idli Sambar">
+                            <div class="play-overlay">
+                                <svg viewBox="0 0 24 24" fill="white">
+                                    <polygon points="5,3 19,12 5,21" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="result-info">
+                            <h4 class="dish-name">Idli Sambar</h4>
+                            <p class="vendor-name">South Indian Express</p>
+                            <div class="result-meta">
+                                <span class="price">₹35</span>
+                                <span class="distance">1.0 km</span>
+                                <span class="rating">⭐ 4.4</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Map View Screen -->
+        <div class="map-screen" id="mapScreen" style="display: none;">
+            <!-- Map Header -->
+            <div class="map-header">
+                <button class="back-btn" id="mapBackBtn">
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M19 12H5M12 5l-7 7 7 7" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </button>
+                <div class="map-title">
+                    <h2>Food Stalls Near You</h2>
+                    <p class="location-subtitle">Koramangala, Bangalore</p>
+                </div>
+                <button class="map-filter-btn" id="mapFilterBtn">
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Map Container -->
+            <div class="map-container" id="mapContainer">
+                <div class="interactive-map">
+                    <!-- Map Background -->
+                    <div class="map-background">
+                        <div class="map-grid"></div>
+                    </div>
+
+                    <!-- Food Stall Pins -->
+                    <div class="map-pin active" data-stall="ramesh-dosa" style="top: 35%; left: 45%;">
+                        <div class="pin-marker">
+                            <div class="pin-icon">🥞</div>
+                            <div class="pin-pulse"></div>
+                        </div>
+                        <div class="pin-label">Ramesh Uncle's</div>
+                    </div>
+
+                    <div class="map-pin" data-stall="mumbai-vada" style="top: 60%; left: 25%;">
+                        <div class="pin-marker">
+                            <div class="pin-icon">🥪</div>
+                            <div class="pin-pulse"></div>
+                        </div>
+                        <div class="pin-label">Mumbai Corner</div>
+                    </div>
+
+                    <div class="map-pin" data-stall="chaat-king" style="top: 25%; left: 70%;">
+                        <div class="pin-marker">
+                            <div class="pin-icon">🍲</div>
+                            <div class="pin-pulse"></div>
+                        </div>
+                        <div class="pin-label">Chaat King</div>
+                    </div>
+
+                    <div class="map-pin" data-stall="punjabi-dhaba" style="top: 75%; left: 60%;">
+                        <div class="pin-marker">
+                            <div class="pin-icon">🍛</div>
+                            <div class="pin-pulse"></div>
+                        </div>
+                        <div class="pin-label">Punjabi Dhaba</div>
+                    </div>
+
+                    <div class="map-pin" data-stall="hyderabadi-corner" style="top: 50%; left: 80%;">
+                        <div class="pin-marker">
+                            <div class="pin-icon">🍚</div>
+                            <div class="pin-pulse"></div>
+                        </div>
+                        <div class="pin-label">Hyderabadi Corner</div>
+                    </div>
+
+                    <div class="map-pin" data-stall="south-express" style="top: 40%; left: 15%;">
+                        <div class="pin-marker">
+                            <div class="pin-icon">🥥</div>
+                            <div class="pin-pulse"></div>
+                        </div>
+                        <div class="pin-label">South Express</div>
+                    </div>
+
+                    <!-- User Location Pin -->
+                    <div class="user-location" style="top: 50%; left: 50%;">
+                        <div class="user-marker">
+                            <div class="user-dot"></div>
+                            <div class="user-circle"></div>
+                        </div>
+                        <div class="user-label">You are here</div>
+                    </div>
+
+                    <!-- Distance Circles -->
+                    <div class="distance-circle" style="top: 50%; left: 50%;">
+                        <div class="circle circle-1km"></div>
+                        <div class="circle circle-2km"></div>
+                        <div class="circle circle-3km"></div>
+                    </div>
+                </div>
+
+                <!-- Map Controls -->
+                <div class="map-controls">
+                    <button class="control-btn zoom-in">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2"/>
+                            <line x1="11" y1="8" x2="11" y2="14" stroke="currentColor" stroke-width="2"/>
+                            <line x1="8" y1="11" x2="14" y2="11" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </button>
+                    <button class="control-btn zoom-out">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2"/>
+                            <line x1="8" y1="11" x2="14" y2="11" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </button>
+                    <button class="control-btn my-location">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="12" cy="12" r="6" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="12" cy="12" r="2" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Bottom Sheet -->
+            <div class="map-bottom-sheet" id="mapBottomSheet">
+                <div class="sheet-handle"></div>
+                <div class="sheet-content">
+                    <!-- Default Content -->
+                    <div class="sheet-default" id="sheetDefault">
+                        <div class="sheet-header">
+                            <h3>6 food stalls nearby</h3>
+                            <p>Swipe up to see all locations</p>
+                        </div>
+                        <div class="nearby-list">
+                            <div class="nearby-item" data-stall="ramesh-dosa">
+                                <div class="item-image">
+                                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=60&h=60&fit=crop" alt="Masala Dosa">
+                                </div>
+                                <div class="item-info">
+                                    <h4>Masala Dosa</h4>
+                                    <p>Ramesh Uncle's Stall</p>
+                                    <div class="item-meta">
+                                        <span class="distance">0.8 km</span>
+                                        <span class="price">₹45</span>
+                                    </div>
+                                </div>
+                                <button class="directions-btn">
+                                    <svg viewBox="0 0 24 24" fill="none">
+                                        <polygon points="3 11 22 2 13 21 11 13 3 11" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <div class="nearby-item" data-stall="chaat-king">
+                                <div class="item-image">
+                                    <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=60&h=60&fit=crop" alt="Pani Puri">
+                                </div>
+                                <div class="item-info">
+                                    <h4>Pani Puri</h4>
+                                    <p>Chaat King</p>
+                                    <div class="item-meta">
+                                        <span class="distance">0.5 km</span>
+                                        <span class="price">₹30</span>
+                                    </div>
+                                </div>
+                                <button class="directions-btn">
+                                    <svg viewBox="0 0 24 24" fill="none">
+                                        <polygon points="3 11 22 2 13 21 11 13 3 11" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <div class="nearby-item" data-stall="south-express">
+                                <div class="item-image">
+                                    <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=60&h=60&fit=crop" alt="Idli Sambar">
+                                </div>
+                                <div class="item-info">
+                                    <h4>Idli Sambar</h4>
+                                    <p>South Indian Express</p>
+                                    <div class="item-meta">
+                                        <span class="distance">1.0 km</span>
+                                        <span class="price">₹35</span>
+                                    </div>
+                                </div>
+                                <button class="directions-btn">
+                                    <svg viewBox="0 0 24 24" fill="none">
+                                        <polygon points="3 11 22 2 13 21 11 13 3 11" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Selected Stall Content -->
+                    <div class="sheet-detail" id="sheetDetail" style="display: none;">
+                        <div class="stall-header">
+                            <div class="stall-image">
+                                <img id="stallImage" src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=120&h=120&fit=crop" alt="Food">
+                                <div class="play-overlay">
+                                    <svg viewBox="0 0 24 24" fill="white">
+                                        <polygon points="5,3 19,12 5,21" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="stall-info">
+                                <h3 id="stallDish">Masala Dosa</h3>
+                                <p id="stallVendor">Ramesh Uncle's Stall</p>
+                                <div class="stall-rating">
+                                    <span class="stars">⭐⭐⭐⭐⭐</span>
+                                    <span class="rating-text">4.5 (120 reviews)</span>
+                                </div>
+                                <div class="stall-meta">
+                                    <span class="price" id="stallPrice">₹45</span>
+                                    <span class="distance" id="stallDistance">0.8 km away</span>
+                                    <span class="time">15 min</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stall-actions">
+                            <button class="action-btn watch-btn">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <polygon points="5,3 19,12 5,21" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                Watch Video
+                            </button>
+                            <button class="action-btn directions-btn">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <polygon points="3 11 22 2 13 21 11 13 3 11" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                Directions
+                            </button>
+                            <button class="action-btn call-btn">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                Call
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Favorites Screen -->
+        <div class="favorites-screen" id="favoritesScreen" style="display: none;">
+            <!-- Favorites Header -->
+            <div class="favorites-header">
+                <button class="back-btn" id="favoritesBackBtn">
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M19 12H5M12 5l-7 7 7 7" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </button>
+                <div class="favorites-title">
+                    <h2>My Favorites</h2>
+                    <p class="favorites-count">12 saved items</p>
+                </div>
+                <button class="favorites-menu-btn" id="favoritesMenuBtn">
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="1" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="19" cy="12" r="1" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="5" cy="12" r="1" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Category Tabs -->
+            <div class="category-tabs">
+                <button class="category-tab active" data-category="all">
+                    <span class="tab-icon">⭐</span>
+                    <span class="tab-label">All</span>
+                    <span class="tab-count">12</span>
+                </button>
+                <button class="category-tab" data-category="south-indian">
+                    <span class="tab-icon">🥞</span>
+                    <span class="tab-label">South Indian</span>
+                    <span class="tab-count">4</span>
+                </button>
+                <button class="category-tab" data-category="north-indian">
+                    <span class="tab-icon">🍛</span>
+                    <span class="tab-label">North Indian</span>
+                    <span class="tab-count">3</span>
+                </button>
+                <button class="category-tab" data-category="snacks">
+                    <span class="tab-icon">🍲</span>
+                    <span class="tab-label">Snacks</span>
+                    <span class="tab-count">5</span>
+                </button>
+            </div>
+
+            <!-- Favorites Content -->
+            <div class="favorites-content">
+                <!-- Empty State (hidden by default) -->
+                <div class="empty-favorites" id="emptyFavorites" style="display: none;">
+                    <div class="empty-icon">💔</div>
+                    <h3>No favorites yet</h3>
+                    <p>Start exploring and save your favorite street food videos!</p>
+                    <button class="explore-btn">Explore Now</button>
+                </div>
+
+                <!-- Favorites Grid -->
+                <div class="favorites-grid" id="favoritesGrid">
+                    <!-- Favorite Item 1 -->
+                    <div class="favorite-item" data-category="south-indian" data-video-id="1">
+                        <div class="favorite-image">
+                            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=200&h=150&fit=crop" alt="Masala Dosa">
+                            <div class="favorite-overlay">
+                                <button class="play-btn">
+                                    <svg viewBox="0 0 24 24" fill="white">
+                                        <polygon points="5,3 19,12 5,21" />
+                                    </svg>
+                                </button>
+                                <button class="remove-favorite-btn">
+                                    <svg viewBox="0 0 24 24" fill="none">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2" fill="currentColor"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="video-duration">2:45</div>
+                        </div>
+                        <div class="favorite-info">
+                            <h4 class="dish-name">Masala Dosa</h4>
+                            <p class="vendor-name">Ramesh Uncle's Stall</p>
+                            <div class="favorite-meta">
+                                <span class="price">₹45</span>
+                                <span class="distance">0.8 km</span>
+                                <span class="saved-time">2 days ago</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Favorite Item 2 -->
+                    <div class="favorite-item" data-category="snacks" data-video-id="3">
+                        <div class="favorite-image">
+                            <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=200&h=150&fit=crop" alt="Pani Puri">
+                            <div class="favorite-overlay">
+                                <button class="play-btn">
+                                    <svg viewBox="0 0 24 24" fill="white">
+                                        <polygon points="5,3 19,12 5,21" />
+                                    </svg>
+                                </button>
+                                <button class="remove-favorite-btn">
+                                    <svg viewBox="0 0 24 24" fill="none">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2" fill="currentColor"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="video-duration">1:30</div>
+                        </div>
+                        <div class="favorite-info">
+                            <h4 class="dish-name">Pani Puri</h4>
+                            <p class="vendor-name">Chaat King</p>
+                            <div class="favorite-meta">
+                                <span class="price">₹30</span>
+                                <span class="distance">0.5 km</span>
+                                <span class="saved-time">1 week ago</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Favorite Item 3 -->
+                    <div class="favorite-item" data-category="north-indian" data-video-id="5">
+                        <div class="favorite-image">
+                            <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=200&h=150&fit=crop" alt="Biryani">
+                            <div class="favorite-overlay">
+                                <button class="play-btn">
+                                    <svg viewBox="0 0 24 24" fill="white">
+                                        <polygon points="5,3 19,12 5,21" />
+                                    </svg>
+                                </button>
+                                <button class="remove-favorite-btn">
+                                    <svg viewBox="0 0 24 24" fill="none">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2" fill="currentColor"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="video-duration">3:20</div>
+                        </div>
+                        <div class="favorite-info">
+                            <h4 class="dish-name">Biryani Bowl</h4>
+                            <p class="vendor-name">Hyderabadi Corner</p>
+                            <div class="favorite-meta">
+                                <span class="price">₹85</span>
+                                <span class="distance">1.5 km</span>
+                                <span class="saved-time">3 days ago</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Favorite Item 4 -->
+                    <div class="favorite-item" data-category="south-indian" data-video-id="6">
+                        <div class="favorite-image">
+                            <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=200&h=150&fit=crop" alt="Idli Sambar">
+                            <div class="favorite-overlay">
+                                <button class="play-btn">
+                                    <svg viewBox="0 0 24 24" fill="white">
+                                        <polygon points="5,3 19,12 5,21" />
+                                    </svg>
+                                </button>
+                                <button class="remove-favorite-btn">
+                                    <svg viewBox="0 0 24 24" fill="none">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2" fill="currentColor"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="video-duration">2:10</div>
+                        </div>
+                        <div class="favorite-info">
+                            <h4 class="dish-name">Idli Sambar</h4>
+                            <p class="vendor-name">South Indian Express</p>
+                            <div class="favorite-meta">
+                                <span class="price">₹35</span>
+                                <span class="distance">1.0 km</span>
+                                <span class="saved-time">5 days ago</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Favorite Item 5 -->
+                    <div class="favorite-item" data-category="north-indian" data-video-id="4">
+                        <div class="favorite-image">
+                            <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=200&h=150&fit=crop" alt="Chole Bhature">
+                            <div class="favorite-overlay">
+                                <button class="play-btn">
+                                    <svg viewBox="0 0 24 24" fill="white">
+                                        <polygon points="5,3 19,12 5,21" />
+                                    </svg>
+                                </button>
+                                <button class="remove-favorite-btn">
+                                    <svg viewBox="0 0 24 24" fill="none">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2" fill="currentColor"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="video-duration">4:05</div>
+                        </div>
+                        <div class="favorite-info">
+                            <h4 class="dish-name">Chole Bhature</h4>
+                            <p class="vendor-name">Punjabi Dhaba</p>
+                            <div class="favorite-meta">
+                                <span class="price">₹65</span>
+                                <span class="distance">2.1 km</span>
+                                <span class="saved-time">1 week ago</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Favorite Item 6 -->
+                    <div class="favorite-item" data-category="snacks" data-video-id="2">
+                        <div class="favorite-image">
+                            <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=200&h=150&fit=crop" alt="Vada Pav">
+                            <div class="favorite-overlay">
+                                <button class="play-btn">
+                                    <svg viewBox="0 0 24 24" fill="white">
+                                        <polygon points="5,3 19,12 5,21" />
+                                    </svg>
+                                </button>
+                                <button class="remove-favorite-btn">
+                                    <svg viewBox="0 0 24 24" fill="none">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2" fill="currentColor"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="video-duration">1:45</div>
+                        </div>
+                        <div class="favorite-info">
+                            <h4 class="dish-name">Vada Pav</h4>
+                            <p class="vendor-name">Mumbai Street Corner</p>
+                            <div class="favorite-meta">
+                                <span class="price">₹25</span>
+                                <span class="distance">1.2 km</span>
+                                <span class="saved-time">2 weeks ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Show mobile screen after 3 seconds
+        setTimeout(() => {
+            document.getElementById('logoScreen').style.display = 'none';
+            document.getElementById('mobileScreen').style.display = 'flex';
+        }, 3000);
+
+        // Mobile number validation
+        const mobileInput = document.getElementById('mobileNumber');
+        const continueBtn = document.getElementById('continueBtn');
+
+        mobileInput.addEventListener('input', function(e) {
+            // Only allow numbers
+            this.value = this.value.replace(/[^0-9]/g, '');
+            
+            // Enable button only if 10 digits
+            if (this.value.length === 10) {
+                continueBtn.disabled = false;
+                continueBtn.classList.add('active');
+            } else {
+                continueBtn.disabled = true;
+                continueBtn.classList.remove('active');
+            }
+        });
+
+        continueBtn.addEventListener('click', function() {
+            if (mobileInput.value.length === 10) {
+                // Show OTP screen
+                document.getElementById('mobileScreen').style.display = 'none';
+                document.getElementById('otpScreen').style.display = 'flex';
+                document.getElementById('displayNumber').textContent = '+91 ' + mobileInput.value;
+                startTimer();
+            }
+        });
+
+        // OTP Logic
+        const otpInputs = document.querySelectorAll('.otp-input');
+        const verifyBtn = document.getElementById('verifyBtn');
+        const backBtn = document.getElementById('backBtn');
+        const resendOtp = document.getElementById('resendOtp');
+        const timer = document.getElementById('timer');
+        const countdown = document.getElementById('countdown');
+
+        // OTP input handling
+        otpInputs.forEach((input, index) => {
+            input.addEventListener('input', function(e) {
+                // Only allow numbers
+                this.value = this.value.replace(/[^0-9]/g, '');
+                
+                // Move to next input
+                if (this.value.length === 1 && index < 3) {
+                    otpInputs[index + 1].focus();
+                }
+                
+                checkOtpComplete();
+            });
+
+            input.addEventListener('keydown', function(e) {
+                // Handle backspace
+                if (e.key === 'Backspace' && this.value === '' && index > 0) {
+                    otpInputs[index - 1].focus();
+                }
+            });
+
+            input.addEventListener('paste', function(e) {
+                e.preventDefault();
+                const pastedData = e.clipboardData.getData('text');
+                const digits = pastedData.replace(/[^0-9]/g, '').slice(0, 4);
+                
+                digits.split('').forEach((digit, i) => {
+                    if (otpInputs[i]) {
+                        otpInputs[i].value = digit;
+                    }
+                });
+                
+                checkOtpComplete();
+            });
+        });
+
+        function checkOtpComplete() {
+            const otp = Array.from(otpInputs).map(input => input.value).join('');
+            if (otp.length === 4) {
+                verifyBtn.disabled = false;
+                verifyBtn.classList.add('active');
+            } else {
+                verifyBtn.disabled = true;
+                verifyBtn.classList.remove('active');
+            }
+        }
+
+        verifyBtn.addEventListener('click', function() {
+            const otp = Array.from(otpInputs).map(input => input.value).join('');
+            if (otp === '1234') { // Demo OTP
+                // Show location screen
+                document.getElementById('otpScreen').style.display = 'none';
+                document.getElementById('locationScreen').style.display = 'flex';
+            } else {
+                alert('Invalid OTP. Please try again.');
+                otpInputs.forEach(input => {
+                    input.value = '';
+                    input.classList.add('error');
+                });
+                otpInputs[0].focus();
+                setTimeout(() => {
+                    otpInputs.forEach(input => input.classList.remove('error'));
+                }, 1000);
+            }
+        });
+
+        backBtn.addEventListener('click', function() {
+            document.getElementById('otpScreen').style.display = 'none';
+            document.getElementById('mobileScreen').style.display = 'flex';
+            // Clear OTP inputs
+            otpInputs.forEach(input => input.value = '');
+            verifyBtn.disabled = true;
+            verifyBtn.classList.remove('active');
+        });
+
+        let timerInterval;
+        function startTimer() {
+            let timeLeft = 30;
+            countdown.textContent = timeLeft;
+            timer.style.display = 'block';
+            resendOtp.style.display = 'none';
+            
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                countdown.textContent = timeLeft;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    timer.style.display = 'none';
+                    resendOtp.style.display = 'inline';
+                }
+            }, 1000);
+        }
+
+        resendOtp.addEventListener('click', function() {
+            alert('OTP resent successfully!');
+            startTimer();
+        });
+
+        // Location Logic
+        const allowLocationBtn = document.getElementById('allowLocationBtn');
+        const manualLocationBtn = document.getElementById('manualLocationBtn');
+
+        allowLocationBtn.addEventListener('click', function() {
+            this.innerHTML = '<span class="btn-icon">⏳</span>Getting Location...';
+            this.disabled = true;
+            
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        const latitude = position.coords.latitude;
+                        const longitude = position.coords.longitude;
+                        
+                        // Success - location obtained
+                        allowLocationBtn.innerHTML = '<span class="btn-icon">✅</span>Location Found!';
+                        allowLocationBtn.style.background = '#28a745';
+                        
+                        setTimeout(() => {
+                            // Show main app
+                            document.getElementById('locationScreen').style.display = 'none';
+                            document.getElementById('mainApp').style.display = 'flex';
+                            initVideoFeed();
+                        }, 1000);
+                    },
+                    function(error) {
+                        // Error handling
+                        allowLocationBtn.innerHTML = '<span class="btn-icon">❌</span>Location Access Denied';
+                        allowLocationBtn.style.background = '#dc3545';
+                        allowLocationBtn.disabled = false;
+                        
+                        setTimeout(() => {
+                            allowLocationBtn.innerHTML = '<span class="btn-icon">📱</span>Try Again';
+                            allowLocationBtn.style.background = '#ff6b35';
+                        }, 2000);
+                        
+                        switch(error.code) {
+                            case error.PERMISSION_DENIED:
+                                alert("Location access denied. Please enable location in your browser settings or choose manual entry.");
+                                break;
+                            case error.POSITION_UNAVAILABLE:
+                                alert("Location information is unavailable. Please try manual entry.");
+                                break;
+                            case error.TIMEOUT:
+                                alert("Location request timed out. Please try again.");
+                                break;
+                        }
+                    },
+                    {
+                        enableHighAccuracy: true,
+                        timeout: 10000,
+                        maximumAge: 60000
+                    }
+                );
+            } else {
+                alert("Geolocation is not supported by this browser. Please enter location manually.");
+                allowLocationBtn.innerHTML = '<span class="btn-icon">❌</span>Not Supported';
+                allowLocationBtn.disabled = false;
+            }
+        });
+
+        manualLocationBtn.addEventListener('click', function() {
+            const location = prompt("Enter your area/location:", "e.g., Koramangala, Bangalore");
+            if (location && location.trim()) {
+                // Update location display
+                document.getElementById('currentLocation').querySelector('.location-text').textContent = location;
+                
+                // Show main app
+                document.getElementById('locationScreen').style.display = 'none';
+                document.getElementById('mainApp').style.display = 'flex';
+                initVideoFeed();
+            }
+        });
+
+        // Video Feed Logic
+        let currentVideoIndex = 0;
+        let videoCards = [];
+        let touchStartY = 0;
+        let touchEndY = 0;
+
+        function initVideoFeed() {
+            videoCards = document.querySelectorAll('.video-card');
+            
+            // Start playing first video
+            playCurrentVideo();
+            
+            // Add touch events for swipe
+            const videoFeed = document.getElementById('videoFeed');
+            videoFeed.addEventListener('touchstart', handleTouchStart, { passive: true });
+            videoFeed.addEventListener('touchend', handleTouchEnd, { passive: true });
+            
+            // Add click event to play/pause video
+            videoCards.forEach((card, index) => {
+                const video = card.querySelector('.video-player');
+                video.addEventListener('click', toggleVideoPlayback);
+            });
+
+            // Add action button events
+            document.querySelectorAll('.action-btn').forEach(btn => {
+                btn.addEventListener('click', handleActionClick);
+            });
+
+            // Add bottom nav events
+            document.querySelectorAll('.bottom-nav-btn').forEach(btn => {
+                btn.addEventListener('click', handleBottomNavClick);
+            });
+        }
+
+        function handleTouchStart(e) {
+            touchStartY = e.touches[0].clientY;
+        }
+
+        function handleTouchEnd(e) {
+            touchEndY = e.changedTouches[0].clientY;
+            handleSwipe();
+        }
+
+        function handleSwipe() {
+            const swipeThreshold = 100;
+            const diff = touchStartY - touchEndY;
+
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    // Swipe up - next video
+                    nextVideo();
+                } else {
+                    // Swipe down - previous video
+                    previousVideo();
+                }
+            }
+        }
+
+        function nextVideo() {
+            if (currentVideoIndex < videoCards.length - 1) {
+                pauseCurrentVideo();
+                videoCards[currentVideoIndex].classList.remove('active');
+                videoCards[currentVideoIndex].classList.add('prev');
+                
+                currentVideoIndex++;
+                videoCards[currentVideoIndex].classList.add('active');
+                playCurrentVideo();
+            }
+        }
+
+        function previousVideo() {
+            if (currentVideoIndex > 0) {
+                pauseCurrentVideo();
+                videoCards[currentVideoIndex].classList.remove('active');
+                
+                currentVideoIndex--;
+                videoCards[currentVideoIndex].classList.remove('prev');
+                videoCards[currentVideoIndex].classList.add('active');
+                playCurrentVideo();
+            }
+        }
+
+        function playCurrentVideo() {
+            const currentVideo = videoCards[currentVideoIndex].querySelector('.video-player');
+            currentVideo.play().catch(e => {
+                console.log('Auto-play prevented:', e);
+                // Show play button overlay if autoplay fails
+            });
+        }
+
+        function pauseCurrentVideo() {
+            const currentVideo = videoCards[currentVideoIndex].querySelector('.video-player');
+            currentVideo.pause();
+        }
+
+        function toggleVideoPlayback(e) {
+            e.preventDefault();
+            const video = e.target;
+            
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        }
+
+        function handleActionClick(e) {
+            e.preventDefault();
+            const action = e.currentTarget.dataset.action;
+            const videoCard = e.currentTarget.closest('.video-card');
+            const dishName = videoCard.querySelector('.dish-name').textContent;
+
+            switch(action) {
+                case 'like':
+                    const likeBtn = e.currentTarget;
+                    const countSpan = likeBtn.querySelector('.btn-count');
+                    let count = parseInt(countSpan.textContent);
+                    
+                    if (likeBtn.classList.contains('liked')) {
+                        likeBtn.classList.remove('liked');
+                        countSpan.textContent = count - 1;
+                    } else {
+                        likeBtn.classList.add('liked');
+                        countSpan.textContent = count + 1;
+                    }
+                    break;
+                
+                case 'bookmark':
+                    const bookmarkBtn = e.currentTarget;
+                    bookmarkBtn.classList.toggle('bookmarked');
+                    break;
+                
+                case 'share':
+                    navigator.share ? 
+                        navigator.share({
+                            title: `Check out ${dishName}`,
+                            text: `Amazing ${dishName} from Bengaluru Swada!`,
+                            url: window.location.href
+                        }) :
+                        alert(`Sharing: ${dishName} from Bengaluru Swada!`);
+                    break;
+            }
+        }
+
+        function handleBottomNavClick(e) {
+            const tab = e.currentTarget.dataset.tab;
+            
+            // Update active state
+            document.querySelectorAll('.bottom-nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            e.currentTarget.classList.add('active');
+
+            switch(tab) {
+                case 'feed':
+                    // Already on feed
+                    break;
+                case 'search':
+                    showSearchScreen();
+                    break;
+                case 'map':
+                    showMapScreen();
+                    break;
+                case 'favorites':
+                    showFavoritesScreen();
+                    break;
+                case 'profile':
+                    alert('Profile page coming soon!');
+                    break;
+            }
+        }
+
+        // Search Screen Logic
+        function showSearchScreen() {
+            document.getElementById('searchScreen').style.display = 'flex';
+            pauseCurrentVideo(); // Pause video when opening search
+            initSearchFunctionality();
+        }
+
+        function hideSearchScreen() {
+            document.getElementById('searchScreen').style.display = 'none';
+            playCurrentVideo(); // Resume video when closing search
+        }
+
+        function initSearchFunctionality() {
+            const searchInput = document.getElementById('searchInput');
+            const clearSearch = document.getElementById('clearSearch');
+            const searchBackBtn = document.getElementById('searchBackBtn');
+            const resultCards = document.querySelectorAll('.result-card');
+
+            // Back button
+            searchBackBtn.addEventListener('click', hideSearchScreen);
+
+            // Search input
+            searchInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase();
+                if (query.length > 0) {
+                    clearSearch.style.display = 'flex';
+                    filterResults(query);
+                } else {
+                    clearSearch.style.display = 'none';
+                    showAllResults();
+                }
+            });
+
+            // Clear search
+            clearSearch.addEventListener('click', function() {
+                searchInput.value = '';
+                this.style.display = 'none';
+                showAllResults();
+                searchInput.focus();
+            });
+
+            // Filter chips
+            document.querySelectorAll('.filter-chip').forEach(chip => {
+                chip.addEventListener('click', function() {
+                    document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const filter = this.dataset.filter;
+                    filterByCategory(filter);
+                });
+            });
+
+            // Price filters
+            document.querySelectorAll('.price-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.price-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const priceRange = this.dataset.price;
+                    filterByPrice(priceRange);
+                });
+            });
+
+            // Distance filters
+            document.querySelectorAll('.distance-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.distance-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const distanceRange = this.dataset.distance;
+                    filterByDistance(distanceRange);
+                });
+            });
+
+            // Sort options
+            document.querySelectorAll('.sort-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const sortBy = this.dataset.sort;
+                    sortResults(sortBy);
+                });
+            });
+
+            // Result card clicks
+            resultCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const dishName = this.querySelector('.dish-name').textContent;
+                    alert(`Opening ${dishName} video...`);
+                    hideSearchScreen();
+                    // Here you could navigate to the specific video
+                });
+            });
+        }
+
+        function filterResults(query) {
+            const resultCards = document.querySelectorAll('.result-card');
+            let visibleCount = 0;
+
+            resultCards.forEach(card => {
+                const dishName = card.querySelector('.dish-name').textContent.toLowerCase();
+                const vendorName = card.querySelector('.vendor-name').textContent.toLowerCase();
+                
+                if (dishName.includes(query) || vendorName.includes(query)) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            updateResultsCount(visibleCount);
+        }
+
+        function showAllResults() {
+            const resultCards = document.querySelectorAll('.result-card');
+            resultCards.forEach(card => {
+                card.style.display = 'block';
+            });
+            updateResultsCount(resultCards.length);
+        }
+
+        function filterByCategory(category) {
+            // This would filter by food category in a real app
+            console.log('Filtering by category:', category);
+        }
+
+        function filterByPrice(priceRange) {
+            const resultCards = document.querySelectorAll('.result-card');
+            let visibleCount = 0;
+
+            if (priceRange === 'all') {
+                showAllResults();
+                return;
+            }
+
+            resultCards.forEach(card => {
+                const price = parseInt(card.dataset.price);
+                let showCard = false;
+
+                switch(priceRange) {
+                    case '0-30':
+                        showCard = price <= 30;
+                        break;
+                    case '31-60':
+                        showCard = price >= 31 && price <= 60;
+                        break;
+                    case '61-100':
+                        showCard = price >= 61 && price <= 100;
+                        break;
+                    case '100+':
+                        showCard = price > 100;
+                        break;
+                }
+
+                if (showCard) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            updateResultsCount(visibleCount);
+        }
+
+        function filterByDistance(distanceRange) {
+            const resultCards = document.querySelectorAll('.result-card');
+            let visibleCount = 0;
+
+            if (distanceRange === 'all') {
+                showAllResults();
+                return;
+            }
+
+            resultCards.forEach(card => {
+                const distance = parseFloat(card.dataset.distance);
+                let showCard = false;
+
+                switch(distanceRange) {
+                    case '0-1':
+                        showCard = distance < 1;
+                        break;
+                    case '1-3':
+                        showCard = distance >= 1 && distance <= 3;
+                        break;
+                    case '3-5':
+                        showCard = distance > 3 && distance <= 5;
+                        break;
+                    case '5+':
+                        showCard = distance > 5;
+                        break;
+                }
+
+                if (showCard) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            updateResultsCount(visibleCount);
+        }
+
+        function sortResults(sortBy) {
+            const resultsGrid = document.getElementById('resultsGrid');
+            const cards = Array.from(resultsGrid.querySelectorAll('.result-card'));
+
+            cards.sort((a, b) => {
+                switch(sortBy) {
+                    case 'distance':
+                        return parseFloat(a.dataset.distance) - parseFloat(b.dataset.distance);
+                    case 'price-low':
+                        return parseInt(a.dataset.price) - parseInt(b.dataset.price);
+                    case 'price-high':
+                        return parseInt(b.dataset.price) - parseInt(a.dataset.price);
+                    case 'popular':
+                        // Sort by rating (you could add rating data attributes)
+                        return Math.random() - 0.5; // Random for demo
+                    default:
+                        return 0;
+                }
+            });
+
+            // Clear and re-append sorted cards
+            resultsGrid.innerHTML = '';
+            cards.forEach(card => resultsGrid.appendChild(card));
+        }
+
+        function updateResultsCount(count) {
+            const resultsCount = document.querySelector('.results-count');
+            resultsCount.textContent = `${count} food stall${count !== 1 ? 's' : ''} found`;
+        }
+
+        // Map Screen Logic
+        function showMapScreen() {
+            document.getElementById('mapScreen').style.display = 'flex';
+            pauseCurrentVideo(); // Pause video when opening map
+            initMapFunctionality();
+        }
+
+        function hideMapScreen() {
+            document.getElementById('mapScreen').style.display = 'none';
+            playCurrentVideo(); // Resume video when closing map
+        }
+
+        function initMapFunctionality() {
+            const mapBackBtn = document.getElementById('mapBackBtn');
+            const mapPins = document.querySelectorAll('.map-pin');
+            const nearbyItems = document.querySelectorAll('.nearby-item');
+            const sheetDefault = document.getElementById('sheetDefault');
+            const sheetDetail = document.getElementById('sheetDetail');
+
+            // Stall data
+            const stallData = {
+                'ramesh-dosa': {
+                    dish: 'Masala Dosa',
+                    vendor: "Ramesh Uncle's Stall",
+                    price: '₹45',
+                    distance: '0.8 km',
+                    image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=120&h=120&fit=crop',
+                    rating: '4.5 (120 reviews)'
+                },
+                'chaat-king': {
+                    dish: 'Pani Puri',
+                    vendor: 'Chaat King',
+                    price: '₹30',
+                    distance: '0.5 km',
+                    image: 'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=120&h=120&fit=crop',
+                    rating: '4.7 (89 reviews)'
+                },
+                'mumbai-vada': {
+                    dish: 'Vada Pav',
+                    vendor: 'Mumbai Street Corner',
+                    price: '₹25',
+                    distance: '1.2 km',
+                    image: 'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=120&h=120&fit=crop',
+                    rating: '4.2 (67 reviews)'
+                },
+                'punjabi-dhaba': {
+                    dish: 'Chole Bhature',
+                    vendor: 'Punjabi Dhaba',
+                    price: '₹65',
+                    distance: '2.1 km',
+                    image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=120&h=120&fit=crop',
+                    rating: '4.3 (95 reviews)'
+                },
+                'hyderabadi-corner': {
+                    dish: 'Biryani Bowl',
+                    vendor: 'Hyderabadi Corner',
+                    price: '₹85',
+                    distance: '1.5 km',
+                    image: 'https://images.unsplash.com/photo-1574484284002-952d92456975?w=120&h=120&fit=crop',
+                    rating: '4.6 (156 reviews)'
+                },
+                'south-express': {
+                    dish: 'Idli Sambar',
+                    vendor: 'South Indian Express',
+                    price: '₹35',
+                    distance: '1.0 km',
+                    image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=120&h=120&fit=crop',
+                    rating: '4.4 (78 reviews)'
+                }
+            };
+
+            // Back button
+            mapBackBtn.addEventListener('click', hideMapScreen);
+
+            // Map pin clicks
+            mapPins.forEach(pin => {
+                pin.addEventListener('click', function() {
+                    const stallId = this.dataset.stall;
+                    
+                    // Remove active class from all pins
+                    mapPins.forEach(p => p.classList.remove('active'));
+                    
+                    // Add active class to clicked pin
+                    this.classList.add('active');
+                    
+                    // Show stall details
+                    showStallDetails(stallId, stallData[stallId]);
+                });
+            });
+
+            // Nearby item clicks
+            nearbyItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const stallId = this.dataset.stall;
+                    
+                    // Remove active class from all pins
+                    mapPins.forEach(p => p.classList.remove('active'));
+                    
+                    // Add active class to corresponding pin
+                    const correspondingPin = document.querySelector(`[data-stall="${stallId}"]`);
+                    if (correspondingPin) {
+                        correspondingPin.classList.add('active');
+                    }
+                    
+                    // Show stall details
+                    showStallDetails(stallId, stallData[stallId]);
+                });
+            });
+
+            // Map controls
+            document.querySelector('.zoom-in').addEventListener('click', function() {
+                console.log('Zoom in');
+                // In a real app, this would zoom the map
+            });
+
+            document.querySelector('.zoom-out').addEventListener('click', function() {
+                console.log('Zoom out');
+                // In a real app, this would zoom the map
+            });
+
+            document.querySelector('.my-location').addEventListener('click', function() {
+                // Reset map to user location
+                mapPins.forEach(p => p.classList.remove('active'));
+                sheetDefault.style.display = 'block';
+                sheetDetail.style.display = 'none';
+            });
+
+            // Direction buttons
+            document.querySelectorAll('.directions-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    alert('Opening directions in maps app...');
+                });
+            });
+        }
+
+        function showStallDetails(stallId, data) {
+            const sheetDefault = document.getElementById('sheetDefault');
+            const sheetDetail = document.getElementById('sheetDetail');
+
+            // Update detail content
+            document.getElementById('stallImage').src = data.image;
+            document.getElementById('stallDish').textContent = data.dish;
+            document.getElementById('stallVendor').textContent = data.vendor;
+            document.getElementById('stallPrice').textContent = data.price;
+            document.getElementById('stallDistance').textContent = data.distance + ' away';
+            document.querySelector('.rating-text').textContent = data.rating;
+
+            // Show detail sheet
+            sheetDefault.style.display = 'none';
+            sheetDetail.style.display = 'block';
+
+            // Add action button listeners
+            document.querySelector('.watch-btn').onclick = function() {
+                alert(`Playing ${data.dish} video...`);
+                hideMapScreen();
+                // Here you could navigate to the specific video
+            };
+
+            document.querySelector('.stall-actions .directions-btn').onclick = function() {
+                alert(`Opening directions to ${data.vendor}...`);
+            };
+
+            document.querySelector('.call-btn').onclick = function() {
+                alert(`Calling ${data.vendor}...`);
+            };
+        }
+
+        // Favorites functionality
+        let favorites = [
+            {
+                id: 1,
+                name: 'Crispy Masala Dosa',
+                vendor: 'Sagar Hotel',
+                category: 'south-indian',
+                image: 'https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=400&h=300&fit=crop',
+                price: '₹85',
+                distance: '0.3 km',
+                duration: '2:45',
+                savedTime: '2 days ago'
+            },
+            {
+                id: 2,
+                name: 'Spicy Pani Puri',
+                vendor: 'Street Corner',
+                category: 'snacks',
+                image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=300&fit=crop',
+                price: '₹40',
+                distance: '0.5 km',
+                duration: '1:30',
+                savedTime: '3 days ago'
+            },
+            {
+                id: 3,
+                name: 'Butter Chicken',
+                vendor: 'Punjabi Dhaba',
+                category: 'north-indian',
+                image: 'https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?w=400&h=300&fit=crop',
+                price: '₹220',
+                distance: '1.2 km',
+                duration: '3:15',
+                savedTime: '1 week ago'
+            },
+            {
+                id: 4,
+                name: 'Mysore Pak',
+                vendor: 'Krishna Sweets',
+                category: 'south-indian',
+                image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop',
+                price: '₹120',
+                distance: '0.8 km',
+                duration: '1:45',
+                savedTime: '5 days ago'
+            },
+            {
+                id: 5,
+                name: 'Bhel Puri',
+                vendor: 'Chaat Wala',
+                category: 'snacks',
+                image: 'https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=400&h=300&fit=crop',
+                price: '₹50',
+                distance: '0.4 km',
+                duration: '2:10',
+                savedTime: '1 day ago'
+            },
+            {
+                id: 6,
+                name: 'Naan & Dal',
+                vendor: 'Royal Kitchen',
+                category: 'north-indian',
+                image: 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&h=300&fit=crop',
+                price: '₹150',
+                distance: '1.5 km',
+                duration: '2:30',
+                savedTime: '4 days ago'
+            }
+        ];
+
+        let currentFavCategory = 'all';
+
+        function showFavoritesScreen() {
+            document.getElementById('favoritesScreen').style.display = 'flex';
+            updateBottomNav('favorites');
+            renderFavorites();
+        }
+
+        function hideFavoritesScreen() {
+            document.getElementById('favoritesScreen').style.display = 'none';
+        }
+
+        function filterFavoritesByCategory(category) {
+            currentFavCategory = category;
+            
+            // Update active tab
+            document.querySelectorAll('.category-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelector(`[data-category="${category}"]`).classList.add('active');
+            
+            renderFavorites();
+        }
+
+        function renderFavorites() {
+            const favoritesGrid = document.querySelector('.favorites-grid');
+            
+            // Filter favorites based on current category
+            let filteredFavorites = favorites;
+            if (currentFavCategory !== 'all') {
+                filteredFavorites = favorites.filter(fav => fav.category === currentFavCategory);
+            }
+            
+            // Update count in header
+            document.querySelector('.favorites-count').textContent = 
+                `${filteredFavorites.length} item${filteredFavorites.length !== 1 ? 's' : ''}`;
+            
+            // Update counts in tabs
+            const allCount = favorites.length;
+            const southIndianCount = favorites.filter(f => f.category === 'south-indian').length;
+            const northIndianCount = favorites.filter(f => f.category === 'north-indian').length;
+            const snacksCount = favorites.filter(f => f.category === 'snacks').length;
+            
+            document.querySelector('[data-category="all"] .tab-count').textContent = allCount;
+            document.querySelector('[data-category="south-indian"] .tab-count').textContent = southIndianCount;
+            document.querySelector('[data-category="north-indian"] .tab-count').textContent = northIndianCount;
+            document.querySelector('[data-category="snacks"] .tab-count').textContent = snacksCount;
+            
+            if (filteredFavorites.length === 0) {
+                favoritesGrid.innerHTML = `
+                    <div class="empty-favorites" style="grid-column: 1 / -1;">
+                        <div class="empty-icon">💔</div>
+                        <h3>No favorites yet</h3>
+                        <p>Start exploring and save your favorite street food videos!</p>
+                        <button class="explore-btn" onclick="hideFavoritesScreen(); showVideoFeed();">
+                            Explore Now
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+            
+            favoritesGrid.innerHTML = filteredFavorites.map(favorite => `
+                <div class="favorite-item" data-id="${favorite.id}" onclick="playFavoriteVideo(${favorite.id})">
+                    <div class="favorite-image">
+                        <img src="${favorite.image}" alt="${favorite.name}" loading="lazy">
+                        <div class="favorite-overlay">
+                            <button class="play-btn">
+                                <svg viewBox="0 0 24 24" fill="white">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <button class="remove-favorite-btn" onclick="removeFavorite(event, ${favorite.id})">
+                            <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </button>
+                        <div class="video-duration">${favorite.duration}</div>
+                    </div>
+                    <div class="favorite-info">
+                        <h4 class="dish-name">${favorite.name}</h4>
+                        <p class="vendor-name">📍 ${favorite.vendor}</p>
+                        <div class="favorite-meta">
+                            <span class="price">${favorite.price}</span>
+                            <span class="distance">${favorite.distance}</span>
+                            <span class="saved-time">${favorite.savedTime}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function removeFavorite(event, favoriteId) {
+            event.stopPropagation();
+            
+            const favoriteItem = document.querySelector(`[data-id="${favoriteId}"]`);
+            favoriteItem.classList.add('removing');
+            
+            setTimeout(() => {
+                favorites = favorites.filter(fav => fav.id !== favoriteId);
+                renderFavorites();
+            }, 400);
+        }
+
+        function playFavoriteVideo(favoriteId) {
+            const favorite = favorites.find(fav => fav.id === favoriteId);
+            if (favorite) {
+                // Hide favorites screen and show video feed
+                hideFavoritesScreen();
+                showVideoFeed();
+                
+                // Show toast notification
+                setTimeout(() => {
+                    showToast(`Playing: ${favorite.name}`, 'success');
+                }, 500);
+            }
+        }
+
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.textContent = message;
+            toast.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: ${type === 'success' ? '#28a745' : '#17a2b8'};
+                color: white;
+                padding: 12px 20px;
+                border-radius: 25px;
+                font-size: 14px;
+                font-weight: 500;
+                z-index: 9999;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            `;
+            
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.opacity = '1';
+            }, 100);
+            
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(toast);
+                }, 300);
+            }, 3000);
+        }
+
+        // Initialize favorites screen event listeners when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Favorites back button
+            const favoritesBackBtn = document.getElementById('favoritesBackBtn');
+            if (favoritesBackBtn) {
+                favoritesBackBtn.addEventListener('click', hideFavoritesScreen);
+            }
+
+            // Category tab clicks
+            document.querySelectorAll('.category-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const category = this.dataset.category;
+                    filterFavoritesByCategory(category);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
