@@ -48,7 +48,44 @@ body {
     font-weight: 600;
     color: #2c3e50;
     letter-spacing: -1px;
+    position: relative;
+    margin-bottom: 2rem;
 }
+
+
+
+/* Veg Badge Text */
+.veg-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 30px;
+    padding: 0.7rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: white;
+    margin-top: 1rem;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    animation: fadeInUp 1s ease-out 0.5s both, badgeGlow 3s ease-in-out infinite;
+}
+
+@keyframes badgeGlow {
+    0%, 100% {
+        box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 8px 25px rgba(39, 174, 96, 0.6);
+        transform: scale(1.02);
+    }
+}
+
+
 
 
 
@@ -465,6 +502,29 @@ body {
         font-size: 6rem;
         margin-bottom: 1.5rem;
     }
+    
+    .veg-logo {
+        width: 40px;
+        height: 40px;
+        top: -8px;
+        right: -30px;
+    }
+    
+    .veg-symbol {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .veg-symbol::after {
+        width: 10px;
+        height: 10px;
+    }
+    
+    .veg-badge {
+        font-size: 0.85rem;
+        padding: 0.6rem 1.2rem;
+        letter-spacing: 0.8px;
+    }
 
     .mobile-input-section {
         padding: 1.5rem 1rem;
@@ -488,6 +548,30 @@ body {
     .food-icon {
         font-size: 5rem;
         margin-bottom: 1rem;
+    }
+    
+    .veg-logo {
+        width: 35px;
+        height: 35px;
+        top: -5px;
+        right: -25px;
+    }
+    
+    .veg-symbol {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .veg-symbol::after {
+        width: 8px;
+        height: 8px;
+    }
+    
+    .veg-badge {
+        font-size: 0.8rem;
+        padding: 0.5rem 1rem;
+        margin-top: 0.8rem;
+        letter-spacing: 0.6px;
     }
 
     .mobile-input-section {
